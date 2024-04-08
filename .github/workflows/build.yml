@@ -28,5 +28,5 @@ jobs:
       with:
         name: r5c-uboot 
         path: |
-          "../**/u-boot.itb"
-          "../**/idblock.bin"
+          "/home/runner/work/**/u-boot.itb"
+          "/home/runner/work/**/idblock.bin"
