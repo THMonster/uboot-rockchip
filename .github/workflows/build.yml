@@ -1,0 +1,29 @@
+name: BUILD
+
+on:
+  workflow_dispatch
+
+jobs:
+  build-r5c-uboot:
+    if: true
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        submodules: 'recursive'
+    - name: install deps 
+      run: |
+        sudo apt -y update
+        sudo apt -y install tree
+        sudo rm -rf /usr/share/dotnet /opt/ghc /usr/local/share/boost /usr/local/lib/android $AGENT_TOOLSDIRECTORY
+        sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/friendlyarm/build-env-on-ubuntu-bionic/master/install.sh)"
+        git clone https://github.com/friendlyarm/rkbin --single-branch --depth 1 -b nanopi5 ../rkbin
+        export PATH=/opt/FriendlyARM/toolchain/11.3-aarch64/bin/:$PATH
+        bash make.sh nanopi5
+        ls
+        tree u-boot
+    - uses: actions/upload-artifact@v3
+      with:
+        name: r5c-uboot 
+        path: "./u-boot"
