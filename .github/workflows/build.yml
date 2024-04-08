@@ -24,6 +24,7 @@ jobs:
         bash make.sh itb
         bash make.sh --idblock
         tree -L 2
+        pwd
     - uses: actions/upload-artifact@v3
       with:
         name: r5c-uboot 
