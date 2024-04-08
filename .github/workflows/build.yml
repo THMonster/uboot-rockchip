@@ -21,8 +21,12 @@ jobs:
         git clone https://github.com/friendlyarm/rkbin --single-branch --depth 1 -b nanopi5 ../rkbin
         export PATH=/opt/FriendlyARM/toolchain/11.3-aarch64/bin/:$PATH
         bash make.sh nanopi5
-        tree -L 3
+        bash make.sh itb
+        bash make.sh --idblock
+        tree -L 2
     - uses: actions/upload-artifact@v3
       with:
         name: r5c-uboot 
-        path: "./**/u-boot.itb"
+        path: |
+          "./**/u-boot.itb"
+          "./**/idblock.bin"
