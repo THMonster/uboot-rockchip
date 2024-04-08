@@ -20,8 +20,8 @@ jobs:
         sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/friendlyarm/build-env-on-ubuntu-bionic/master/install.sh)"
         git clone https://github.com/friendlyarm/rkbin --single-branch --depth 1 -b nanopi5 ../rkbin
         export PATH=/opt/FriendlyARM/toolchain/11.3-aarch64/bin/:$PATH
-        bash make.sh nanopi5 itb
-        tree -L 2
+        bash make.sh nanopi5
+        tree -L 3
     - uses: actions/upload-artifact@v3
       with:
         name: r5c-uboot 
